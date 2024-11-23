@@ -20,9 +20,10 @@
                     <div class="nav-item dropdown">
                         <a href="./index.php" class="btn btn-link dropdown-toggle" data-bs-toggle="dropdown">Laboratory</a>
                         <div class="dropdown-menu m-0">
-                            <a href="./pages/service.php" class="dropdown-item">Service</a>
-                            <a href="./pages/lab1.php" class="dropdown-item">Laboraory - 01</a>
-                            <a href="./pages/lab2.php" class="dropdown-item">Laboraory - 02</a>
+                            <a href="./microgridlab.php" class="dropdown-item">UOM MicroGrid Lab</a>
+                            <a href="./digitalgridlab.php" class="dropdown-item">Digital Grid Lab</a>
+                            <a href="./aimicrogridlab.php" class="dropdown-item">AI MicroGrid Lab</a>
+                            <a href="./agropv.php" class="dropdown-item">AgroPv System</a>
                         </div>
                     </div>
                 </div>
