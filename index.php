@@ -123,7 +123,7 @@
                         <div class="p-4">
                             <i class="fa fa-3x fa-cog text-primary mb-4"></i>
                             <h5>Latest Facilities</h5>
-                            <p>Equipped with modern resources and technology, our facilities enhance learning and innovation.</p>
+                            <p>Equipped with modern resources and technology, our facilities enhance learning and new innovation.</p>
                         </div>
                     </div>
                 </div>
@@ -241,7 +241,7 @@
                         <h5 class="mt-4">Choose Your Path</h5>
                         <hr class="w-25 mx-auto bg-primary mb-1">
                         <hr class="w-50 mx-auto bg-primary mt-0">
-                        <p class="mb-0">Explore various opportunities and tailor your journey to match your ambitions and goals.</p>
+                        <p class="mb-0">Explore various opportunities and tailor your journey to match your ambitions and goals to reach your expectations.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6 text-center pt-4 wow fadeInUp" data-wow-delay="0.3s">
@@ -339,24 +339,8 @@
                             <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
                         </div>
                         <div class="text-center p-4">
-                            <h5 class="mb-0">Mr. W.Charitha Maduranga</h5>
+                            <h5 class="mb-0">Mr. W.C. Maduranga</h5>
                             <small>MSc.in Electrical Engineering</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="team-item">
-                        <div class="overflow-hidden space">
-                            <img class="img-fluid circle" src="img/img5.jpeg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Mr. Nayanajith Kurukulasooriya</h5>
-                            <small>MPhil.in Electrical Engineering</small>
                         </div>
                     </div>
                 </div>
@@ -371,8 +355,40 @@
                             <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
                         </div>
                         <div class="text-center p-4">
+                            <h5 class="mb-0">Mr. N. Kurukulasooriya</h5>
+                            <small>MPhil.in Electrical Engineering</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="team-item">
+                        <div class="overflow-hidden space">
+                            <img class="img-fluid circle" src="img/img5.jpeg" alt="">
+                        </div>
+                        <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
+                            <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                        </div>
+                        <div class="text-center p-4">
                             <h5 class="mb-0">Mr. N.H.Reshan H.Perera</h5>
                             <small>MSc.in Electrical Engineering</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="team-item">
+                        <div class="overflow-hidden space">
+                            <img class="img-fluid circle" src="img/al6.jpg" alt="">
+                        </div>
+                        <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
+                            <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                        </div>
+                        <div class="text-center p-4">
+                            <h5 class="mb-0">Mr. W.H.Eranga</h5>
+                            <small>PhD.</small>
                         </div>
                     </div>
                 </div>
@@ -387,7 +403,7 @@
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-3">Excellence</h6>
-                <h1 class="mb-5">Postgraduate Students</h1>
+                <h1 class="mb-5">Our Alumnis</h1>
             </div>
             <div class="row g-4">
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -470,22 +486,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="team-item">
-                        <div class="overflow-hidden space">
-                            <img class="img-fluid circle" src="img/al6.jpg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Mr. W.H.Eranga</h5>
-                            <small>MSc.in Electrical Engineering</small>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -508,6 +508,9 @@
                                 </div>
                                 <div class="carousel-item">
                                     <img class="d-block w-100" src="img/nw2.jpg" alt="Second slide">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="img/news3.jfif" alt="Second slide">
                                 </div>
                             </div>
                             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">

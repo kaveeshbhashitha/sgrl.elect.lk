@@ -80,7 +80,7 @@
     <!-- Destination Start -->
 
     <!-- News 1 Start -->
-    <div class="container-xxl py-5">
+    <!-- <div class="container-xxl py-5">
         <div class="container">
             <div class="cards">
                 <div class="card">
@@ -109,7 +109,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- News 1 End -->
 
     <div class="container-xxl">
@@ -123,10 +123,12 @@
         </div>
     </div>
 
-
+    <!-- <div class="iframe-container">
+        <iframe src="https://vrm.victronenergy.com/installation/446208/dashboard"></iframe>
+    </div> -->
     
 
-    <script>
+    <!-- <script>
         const ctxEnergy = document.getElementById('energyChart').getContext('2d');
         const energyChart = new Chart(ctxEnergy, {
             type: 'line',
@@ -165,7 +167,7 @@
                 }
             }
         });
-    </script>
+    </script> -->
     <!-- Footer Start -->
     <?php
         include('./component/footer.php');

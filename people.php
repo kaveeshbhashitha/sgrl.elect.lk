@@ -103,10 +103,10 @@
             </div>
             <div class="owl-carousel testimonial-carousel position-relative">
                 <div class="testimonial-item bg-white text-center border p-4">
-                    <img class="bg-white rounded-circle shadow p-1 mx-auto mb-3" src="img/ra.jpeg" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Dr. Rikiya Abe</h5>
+                    <img class="bg-white rounded-circle shadow p-1 mx-auto mb-3" src="img/dg.png" style="width: 80px; height: 80px;">
+                    <h5 class="mb-0">DG capital group</h5>
                     <p>Tokyo, Japan</p>
-                    <p class="mb-0">Representative, Director of Digital Grid Consortium, CEO of DG Power System</p>
+                    <p class="mb-0">Digital Grid Consortium was launched in Japan in 2011. It is represented by Dr. Rikiya Abe, the developer of the Digital Grid and former specially appointed professor at the University of Tokyo.</p>
                 </div>
                 <div class="testimonial-item bg-white text-center border p-4">
                     <img class="bg-white rounded-circle shadow p-1 mx-auto mb-3" src="img/leco.png" style="width: 80px; height: 80px;">
@@ -114,17 +114,17 @@
                     <p>Sri Lanka</p>
                     <p class="mt-2 mb-0">LECO Lanka is a leading electricity distribution company in Sri Lanka, dedicated to providing reliable and efficient power solutions to its customers.</p>
                 </div>
-                <div class="testimonial-item bg-white text-center border p-4">
+                <!-- <div class="testimonial-item bg-white text-center border p-4">
                     <img class="bg-white rounded-circle shadow p-1 mx-auto mb-3" src="img/ra.jpeg" style="width: 80px; height: 80px;">
                     <h5 class="mb-0">Dr. Rikiya Abe</h5>
                     <p>Tokyo, Japan</p>
                     <p class="mb-0">Representative, Director of Digital Grid Consortium, CEO of DG Power System</p>
-                </div>
+                </div> -->
                 <div class="testimonial-item bg-white text-center border p-4">
-                    <img class="bg-white rounded-circle shadow p-1 mx-auto mb-3" src="img/leco.png" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Lanka Electricity Company (Pvt)</h5>
+                    <img class="bg-white rounded-circle shadow p-1 mx-auto mb-3" src="img/edb.jfif" style="width: 80px; height: 80px;">
+                    <h5 class="mb-0">Export Development Board</h5>
                     <p>Sri Lanka</p>
-                    <p class="mt-2 mb-0">LECO Lanka is a leading electricity distribution company in Sri Lanka, dedicated to providing reliable and efficient power solutions to its customers.</p>
+                    <p class="mt-2 mb-0">The Sri Lanka Export Development Board, usually known as EDB, is Sri Lanka's apex organization for the promotion and development of exports and was established in 1979.</p>
                 </div>
             </div>
         </div>
@@ -198,24 +198,8 @@
                             <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
                         </div>
                         <div class="text-center p-4">
-                            <h5 class="mb-0">Mr. W.Charitha Maduranga</h5>
+                            <h5 class="mb-0">Mr. W.V.C. Maduranga</h5>
                             <small>MSc.in Electrical Engineering</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="team-item">
-                        <div class="overflow-hidden space">
-                            <img class="img-fluid circle" src="img/img5.jpeg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Mr. Nayanajith Kurukulasooriya</h5>
-                            <small>MPhil.in Electrical Engineering</small>
                         </div>
                     </div>
                 </div>
@@ -230,8 +214,40 @@
                             <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
                         </div>
                         <div class="text-center p-4">
-                            <h5 class="mb-0">Mr. N.H.Reshan H.Perera</h5>
+                            <h5 class="mb-0">Mr. N. Kurukulasooriya</h5>
+                            <small>MPhil.in Electrical Engineering</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="team-item">
+                        <div class="overflow-hidden space">
+                            <img class="img-fluid circle" src="img/img5.jpeg" alt="">
+                        </div>
+                        <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
+                            <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                        </div>
+                        <div class="text-center p-4">
+                            <h5 class="mb-0">Mr. N.H.R.H.Perera</h5>
                             <small>MSc.in Electrical Engineering</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="team-item">
+                        <div class="overflow-hidden space">
+                            <img class="img-fluid circle" src="img/al6.jpg" alt="">
+                        </div>
+                        <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
+                            <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                        </div>
+                        <div class="text-center p-4">
+                            <h5 class="mb-0">Mr. W.H.Eranga</h5>
+                            <small>PhD.</small>
                         </div>
                     </div>
                 </div>
@@ -246,7 +262,7 @@
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-3">Excellence</h6>
-                <h1 class="mb-5">Postgraduate Students</h1>
+                <h1 class="mb-5">Our Alumnis</h1>
             </div>
             <div class="row g-4">
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -325,22 +341,6 @@
                         </div>
                         <div class="text-center p-4">
                             <h5 class="mb-0">Mr. C.Devin Aluthge</h5>
-                            <small>MSc.in Electrical Engineering</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="team-item">
-                        <div class="overflow-hidden space">
-                            <img class="img-fluid circle" src="img/al6.jpg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Mr. W.H.Eranga</h5>
                             <small>MSc.in Electrical Engineering</small>
                         </div>
                     </div>

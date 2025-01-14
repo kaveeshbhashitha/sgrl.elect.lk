@@ -93,8 +93,14 @@
             <div class="row g-4 justify-content-center">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="package-item">
-                        <div class="overflow-hidden">
-                            <iframe width="100%" height="230" src="https://www.youtube.com/embed/WjyRLKaTjKQ?playlist=WjyRLKaTjKQ&loop=1"></iframe>
+                        <div class="video-container" style="position: relative; width: 100%; height: 230px;">
+                            <!-- Custom Thumbnail -->
+                            <img src="./img/thum1.jpg" alt="Custom Thumbnail" class="custom-thumbnail" style="width: 100%; height: 100%; cursor: pointer; position: absolute; z-index: 2;" onclick="showVideo(this)">
+                            <!-- YouTube Video -->
+                            <iframe class="video-iframe" width="100%" height="230" 
+                                src="https://www.youtube.com/embed/WjyRLKaTjKQ?playlist=WjyRLKaTjKQ&loop=1"
+                                style="display: none; z-index: 1; position: absolute; width: 100%; height: 100%;" allowfullscreen>
+                            </iframe>
                         </div>
                         <div class="text-center p-4">
                             <h3 class="mb-0">Watch Us</h3>
@@ -102,25 +108,37 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="package-item">
-                        <div class="overflow-hidden">
-                            <iframe width="100%" height="230" src="https://www.youtube.com/embed/Xm1oIRuSOWA?playlist=Xm1oIRuSOWA&loop=1"></iframe>
+                        <div class="video-container" style="position: relative; width: 100%; height: 230px;">
+                            <!-- Custom Thumbnail -->
+                            <img src="./img/thum2.jpg" alt="Custom Thumbnail" class="custom-thumbnail" style="width: 100%; height: 100%; cursor: pointer; position: absolute; z-index: 2;" onclick="showVideo(this)">
+                            <!-- YouTube Video -->
+                            <iframe class="video-iframe" width="100%" height="230" 
+                                src="https://www.youtube.com/embed/Xm1oIRuSOWA?playlist=Xm1oIRuSOWA&loop=1"
+                                style="display: none; z-index: 1; position: absolute; width: 100%; height: 100%;" allowfullscreen>
+                            </iframe>
                         </div>
                         <div class="text-center p-4">
-                            <h3 class="mb-0">Explore Us</h3>
-                            <p>Equipped with advanced tools, the lab allows users to simulate and control grid dynamics safely.</p>
+                            <h3 class="mb-0">Watch Us</h3>
+                            <p>The PowerGrid Lab provides a hands-on environment for studying and optimizing electrical power systems.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="package-item">
-                        <div class="overflow-hidden">
-                            <iframe width="100%" height="230" src="https://www.youtube.com/embed/XhW8-n37asE?playlist=XhW8-n37asE&loop=1"></iframe>
+                        <div class="video-container" style="position: relative; width: 100%; height: 230px;">
+                            <!-- Custom Thumbnail -->
+                            <img src="./img/thum3.jpg" alt="Custom Thumbnail" class="custom-thumbnail" style="width: 100%; height: 100%; cursor: pointer; position: absolute; z-index: 2;" onclick="showVideo(this)">
+                            <!-- YouTube Video -->
+                            <iframe class="video-iframe" width="100%" height="230" 
+                                src="https://www.youtube.com/embed/XhW8-n37asE?playlist=XhW8-n37asE&loop=1"
+                                style="display: none; z-index: 1; position: absolute; width: 100%; height: 100%;" allowfullscreen>
+                            </iframe>
                         </div>
                         <div class="text-center p-4">
-                            <h3 class="mb-0">Learn Well</h3>
-                            <p>This facility fosters research in sustainable energy and prepares students for real-world power engineering challenges.</p>
+                            <h3 class="mb-0">Watch Us</h3>
+                            <p>The PowerGrid Lab provides a hands-on environment for studying and optimizing electrical power systems.</p>
                         </div>
                     </div>
                 </div>
@@ -141,10 +159,33 @@
                 <div class="col-lg-8 wow fadeInUp" data-wow-delay="0.3s">
                     <h6 class="section-title bg-white text-start text-primary pe-3">Who Conduct Us</h6>
                     <h1 class="mb-4">Our<span class="text-primary"> Coordinator</span></h1>
-                    <h3 class="mb-4">Prof. Udayanga Hemapala</h3>
-                    <h5>Coordinator of SGRG</h5>
+                    <h3>Prof. Udayanga Hemapala</h3>
+                    <a href="http://energymin.gov.lk/web/index.php/en/about-us-1/secretary-s-profile"><small class="mb-4"><i>Secretary, Ministry of Power and Energy</i></small></a>
+                    <h5 class="mt-3">Coordinator of SGRG</h5>
                     <p>Prof. Udayanga Hemapala is a distinguished expert in electrical engineering, specializing in power systems and smart grid technologies. Known for his research in automation and sustainable energy, he brings valuable industry insights and academic excellence to his field. Prof. Hemapala is also a dedicated mentor, inspiring students and professionals alike with his expertise and innovative approach.</p>
                     <a class="btn btn-primary py-3 px-5 mt-2" href="https://lk.linkedin.com/in/udayanga-hemapala-1b8a53168">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Coordinator End -->
+
+    <!-- Coordinator Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="img-fluid position-absolute" src="img/dr.manuja.jpg" alt="" style="object-fit: cover; height: auto; width: 400px;">
+                    </div>
+                </div>
+                <div class="col-lg-8 wow fadeInUp" data-wow-delay="0.3s">
+                    <h6 class="section-title bg-white text-start text-primary pe-3">Who manage us</h6>
+                    <h1 class="mb-4">Our <span class="text-primary"> Lab Incharge</span></h1>
+                    <h3>Dr. Manuja Gunawardhana</h3>
+                    
+                    <p>Dr. Gunawardana obtained his B.Sc. Degree in Electrical Engineering with First Class Honors in April 2016 from the University of Moratuwa. Upon graduation, he worked as a temporary instructor and a temporary lecturer for eight months at the same university. In January 2017, he joined the Department of Electrical and Computer Engineering of the University of Manitoba, Canada to pursue fully funded masters and doctoral degrees.</p>
+                    <a class="btn btn-primary py-3 px-5 mt-2" href="https://www.linkedin.com/in/manuja-gunawardana-2a389213b/">Read More</a>
                 </div>
             </div>
         </div>

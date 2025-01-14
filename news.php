@@ -50,6 +50,27 @@
     </div>
     <!-- Navbar & Hero End -->
 
+    <!-- News 3 Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="img-fluid position-absolute" src="img/news3.jfif" alt="" style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <h6 class="section-title bg-white text-start text-primary pe-3">See What's New</h6>
+                    <h3 class="mb-4">EDB Leadership and Industry Partners Visit Smart Grid and Digital Grid Research Labs at University of Moratuwa</h3>
+                    <h5>2024-07-04</h5>
+                    <p>Dr. Kingsley Bernard, Chairman and Chief Executive Officer of the EDB, Mrs. C. D. Dharmasena, Director General of the EDB, along with representatives from the EDB and industry partners from Venora Lanka Power Panels (Pvt) Ltd and Sentinel Systems (Pvt) Ltd, visited the Smart Grid Research Lab and Digital Grid Research Lab at the Department of Electrical Engineering, University of Moratuwa, on 4th September 2024. The team discussed the progress of two ongoing projects with industry partners.</p>
+                    <a class="btn btn-primary py-3 px-5 mt-2" href="https://www.linkedin.com/posts/smart-grid-research-group-at_dr-kingsley-bernard-chairman-and-chief-activity-7238890528891674624-sVan?utm_source=share&utm_medium=member_desktop">See More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- News 3 End -->
+
     <!-- News 1 Start -->
     <div class="container-xxl py-5">
         <div class="container">
