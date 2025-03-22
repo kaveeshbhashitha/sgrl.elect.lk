@@ -35,7 +35,7 @@
                         Actions
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Add People</a>
+                        <a class="dropdown-item" href="../actions/addPeople.php">Add People</a>
                         <a class="dropdown-item" href="#">Add Clients</a>
                         <a class="dropdown-item" href="#">Add News</a>
                         <a class="dropdown-item" href="#">Add Service</a>

@@ -108,24 +108,34 @@ $conn->close();
                 </select>
             </div>
 
-            <div class="mb-3">
-                <label class="form-label">First Name<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" name="firstName">
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <label class="form-label">First Name<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="firstName">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label class="form-label">Last Name<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="lastName">
+                    </div>
+                </div>
             </div>
 
-            <div class="mb-3">
-                <label class="form-label">Last Name<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" name="lastName">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Title<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" name="title">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Degree<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" name="degree">
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <label class="form-label">Title<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="title">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label class="form-label">Degree<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="degree">
+                    </div>
+                </div>
             </div>
 
             <div class="mb-3">
@@ -139,8 +149,8 @@ $conn->close();
             </div>
 
             <div class="d-flex">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="reset" class="btn btn-dark mx-2">Reset Form</button>
+                <button type="submit" class="btn btn-danger btn-sm">Submit</button>
+                <button type="reset" class="btn btn-dark mx-2 btn-sm">Reset Form</button>
             </div>
         </form>
     </div>
