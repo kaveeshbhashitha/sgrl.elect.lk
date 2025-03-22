@@ -22,10 +22,10 @@
                     <a class="nav-link" href="../display/displayPeople.php">People</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Clients</a>
+                    <a class="nav-link" href="../display/displayClient.php">Clients</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">News</a>
+                    <a class="nav-link" href="../display/displayNews.php">News</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Service</a>
@@ -37,7 +37,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="../actions/addPeople.php">Add People</a>
                         <a class="dropdown-item" href="../actions/addClient.php">Add Clients</a>
-                        <a class="dropdown-item" href="#">Add News</a>
+                        <a class="dropdown-item" href="../actions/addNews.php">Add News</a>
                         <a class="dropdown-item" href="#">Add Service</a>
                     </div>
                 </li>
