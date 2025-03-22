@@ -14,6 +14,7 @@ if ($result->num_rows == 0) {
         title VARCHAR(100),
         degree VARCHAR(100),
         contactUrl VARCHAR(255),
+        publishStatus VARCHAR(255),
         image VARCHAR(255)
     )";
     if (!$conn->query($createTableSQL)) {
@@ -30,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $title = trim($_POST['title'] ?? '');
     $degree = trim($_POST['degree'] ?? '');
     $contactUrl = trim($_POST['contactUrl'] ?? '');
+    $status = trim('None');
     
     if (empty($peopleType)) $errors[] = "People type is required";
     if (empty($firstName)) $errors[] = "First name is required";
@@ -61,18 +63,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (empty($errors)) {
-        $stmt = $conn->prepare("INSERT INTO people (peopleType, firstName, lastName, title, degree, contactUrl, image) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssss", $peopleType, $firstName, $lastName, $title, $degree, $contactUrl, $imagePath);
+        $stmt = $conn->prepare("INSERT INTO people (peopleType, firstName, lastName, title, degree, publishStatus, contactUrl, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssssss", $peopleType, $firstName, $lastName, $title, $degree, $status, $contactUrl, $imagePath);
 
         if ($stmt->execute()) {
-            echo "<div class='alert alert-success'>New record created successfully</div>";
+            echo "<div class='px-5 my-2'><div class='alert alert-success'>New record created successfully</div></div>";
         } else {
             echo "<div class='alert alert-danger'>Error: " . $stmt->error . "</div>";
         }
         $stmt->close();
     } else {
         foreach ($errors as $error) {
-            echo "<div class='alert alert-danger'>$error</div>";
+            echo "<div class='px-5 my-2'><div class='alert alert-danger'>$error</div></div>";
         }
     }
 }
@@ -83,54 +85,64 @@ $conn->close();
 <html>
 <head>
     <title>People Form</title>
+    <link href="../../img/sgrg-logo.png" rel="icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
-<div class="container mt-5">
-    <h2 class="mb-4">Add a New Person</h2>
-    <form action="" method="post" enctype="multipart/form-data" class="card p-4 shadow">
-        <div class="mb-3">
-            <label class="form-label">People Type</label>
-            <select class="form-select" name="peopleType" required>
-                <option value="">Select Type</option>
-                <option value="Student">Student</option>
-                <option value="Teacher">Teacher</option>
-                <option value="Staff">Staff</option>
-            </select>
-        </div>
 
-        <div class="mb-3">
-            <label class="form-label">First Name</label>
-            <input type="text" class="form-control" name="firstName" required>
-        </div>
+    <?php
+        require '../layout/topnav.php';
+    ?>
 
-        <div class="mb-3">
-            <label class="form-label">Last Name</label>
-            <input type="text" class="form-control" name="lastName" required>
-        </div>
+    <div class="container my-5">
+        <h2 class="mb-4">Add a New Person</h2>
+        <form action="" method="post" enctype="multipart/form-data" class="card p-4">
+            <div class="mb-3">
+                <label class="form-label">People Type<span class="text-danger">*</span></label>
+                <select class="form-select" name="peopleType">
+                    <option value="">Select Type</option>
+                    <option value="Student">Undergraduate</option>
+                    <option value="Teacher">Postgraduate</option>
+                    <option value="Alumni">Alumni</option>
+                    <option value="Staff">Staff</option>
+                </select>
+            </div>
 
-        <div class="mb-3">
-            <label class="form-label">Title</label>
-            <input type="text" class="form-control" name="title" required>
-        </div>
+            <div class="mb-3">
+                <label class="form-label">First Name<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="firstName">
+            </div>
 
-        <div class="mb-3">
-            <label class="form-label">Degree</label>
-            <input type="text" class="form-control" name="degree" required>
-        </div>
+            <div class="mb-3">
+                <label class="form-label">Last Name<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="lastName">
+            </div>
 
-        <div class="mb-3">
-            <label class="form-label">Contact URL</label>
-            <input type="url" class="form-control" name="contactUrl" required>
-        </div>
+            <div class="mb-3">
+                <label class="form-label">Title<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="title">
+            </div>
 
-        <div class="mb-3">
-            <label class="form-label">Image</label>
-            <input type="file" class="form-control" name="image" accept="image/*" required>
-        </div>
+            <div class="mb-3">
+                <label class="form-label">Degree<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="degree">
+            </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</div>
+            <div class="mb-3">
+                <label class="form-label">Contact URL<span class="text-danger">*</span></label>
+                <input type="url" class="form-control" name="contactUrl">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Image<span class="text-danger">*</span></label>
+                <input type="file" class="form-control" name="image" accept="image/*">
+            </div>
+
+            <div class="d-flex">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="reset" class="btn btn-dark mx-2">Reset Form</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
