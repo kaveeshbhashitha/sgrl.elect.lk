@@ -1,0 +1,152 @@
+<?php
+
+require '../db/conn.php';
+
+// Check if table exists, create if not
+$tableCheck = "SHOW TABLES LIKE 'client'";
+$result = $conn->query($tableCheck);
+if ($result->num_rows == 0) {
+    $createTableSQL = "CREATE TABLE client (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        clientType VARCHAR(50),
+        title VARCHAR(100),
+        country VARCHAR(100),
+        descript VARCHAR(100),
+        contactUrl VARCHAR(255),
+        publishStatus VARCHAR(255),
+        image VARCHAR(255)
+    )";
+    if (!$conn->query($createTableSQL)) {
+        die("Error creating table: " . $conn->error);
+    }
+}
+
+$errors = [];
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $clientType = $_POST['clientType'] ?? '';
+    $title = trim($_POST['title'] ?? '');
+    $country = trim($_POST['country'] ?? '');
+    $descript = trim($_POST['descript'] ?? '');
+    $contactUrl = trim($_POST['contactUrl'])=== '' ? 'www.uom.lk' : trim($_POST['contactUrl']);
+    $status = trim('None');
+    
+    if (empty($clientType)) $errors[] = "Client type is required";
+    if (empty($title)) $errors[] = "title is required";
+    if (empty($country)) $errors[] = "Country is required";
+    if (empty($descript)) $errors[] = "Descript is required";
+    if (empty($contactUrl)) $errors[] = "Contact URL is required";
+
+    // Handle image upload
+    if (!empty($_FILES['image']['name'])) {
+        $targetDir = "uploads/";
+        if (!is_dir($targetDir)) mkdir($targetDir);
+        $imageName = basename($_FILES['image']['name']);
+        $targetFilePath = $targetDir . $imageName;
+        $fileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
+
+        $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+        if (!in_array($fileType, $allowedTypes)) {
+            $errors[] = "Only JPG, JPEG, PNG, and GIF files are allowed";
+        }
+
+        if (empty($errors) && move_uploaded_file($_FILES['image']['tmp_name'], $targetFilePath)) {
+            $imagePath = $targetFilePath;
+        } else {
+            $errors[] = "Image upload failed";
+        }
+    } else {
+        $errors[] = "Image is required";
+    }
+
+    if (empty($errors)) {
+        $stmt = $conn->prepare("INSERT INTO client (clientType, title, country, descript, publishStatus, contactUrl, image) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssss", $clientType, $title, $country, $descript, $status, $contactUrl, $imagePath);
+
+        if ($stmt->execute()) {
+            echo "<script>window.location.href='../display/displayClient.php'</script>";
+        } else {
+            echo "<div class='alert alert-danger'>Error: " . $stmt->error . "</div>";
+        }
+        $stmt->close();
+    } else {
+        foreach ($errors as $error) {
+            echo "<div class='px-5 my-2'><div class='alert alert-danger'>$error</div></div>";
+        }
+    }
+}
+$conn->close();
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Client Form</title>
+    <link href="../../img/sgrg-logo.png" rel="icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+    <?php
+        require '../layout/topnav.php';
+    ?>
+
+    <div class="container my-5">
+        <h2 class="mb-4">Add a New Client</h2>
+        <form action="" method="post" enctype="multipart/form-data" class="card p-4">
+            <div class="mb-3">
+                <label class="form-label">Client Type<span class="text-danger">*</span></label>
+                <select class="form-select" name="clientType">
+                    <option value="">Select Type</option>
+                    <option value="Sri Lankan">Sri Lankan</option>
+                    <option value="International">International</option>
+                </select>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <label class="form-label">Title<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="title">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label class="form-label">Country<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="country">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="mb-3">
+                        <label class="form-label">Description<span class="text-danger">*</span></label>
+                        <textarea type="text" class="form-control" name="descript"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Contact URL<span class="text-danger">*</span></label>
+                <input type="url" class="form-control" name="contactUrl">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Image<span class="text-danger">*</span></label>
+                <input type="file" class="form-control" name="image" accept="image/*">
+            </div>
+
+            <div class="d-flex">
+                <button type="submit" class="btn btn-danger btn-sm">Submit</button>
+                <button type="reset" class="btn btn-dark mx-2 btn-sm">Reset Form</button>
+            </div>
+        </form>
+    </div>
+
+    <?php
+        require '../layout/footer.php';
+    ?>
+    
+</body>
+</html>
