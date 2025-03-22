@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bind_param("ssssssss", $peopleType, $firstName, $lastName, $title, $degree, $status, $contactUrl, $imagePath);
 
         if ($stmt->execute()) {
-            echo "<div class='px-5 my-2'><div class='alert alert-success'>New record created successfully</div></div>";
+            echo "<script>window.location.href='../display/displayPeople.php'</script>";
         } else {
             echo "<div class='alert alert-danger'>Error: " . $stmt->error . "</div>";
         }
@@ -154,5 +154,10 @@ $conn->close();
             </div>
         </form>
     </div>
+
+    <?php
+        require '../layout/footer.php';
+    ?>
+    
 </body>
 </html>

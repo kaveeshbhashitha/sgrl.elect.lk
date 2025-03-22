@@ -11,7 +11,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 20px 110px">
-        <a class="navbar-brand" href="#">UOM Smartgrid Lab</a>
+        <a class="navbar-brand" href="#">UOM <span class="text-danger">Smartgrid Lab</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -19,7 +19,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">People</a>
+                    <a class="nav-link" href="../display/displayPeople.php">People</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Clients</a>

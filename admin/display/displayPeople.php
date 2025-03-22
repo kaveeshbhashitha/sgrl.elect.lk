@@ -2,6 +2,24 @@
 // Include the database connection
 require '../db/conn.php';
 
+// Handle publish/unpublish actions
+if (isset($_POST['action']) && isset($_POST['id'])) {
+    $id = intval($_POST['id']);
+    $newStatus = ($_POST['action'] === 'publish') ? 'Published' : 'None';
+
+    try {
+        $updateSql = "UPDATE people SET publishStatus = ? WHERE id = ?";
+        $stmt = $conn->prepare($updateSql);
+        $stmt->bind_param('si', $newStatus, $id);
+
+        if (!$stmt->execute()) {
+            throw new Exception("Failed to update status: " . $stmt->error);
+        }
+    } catch (Exception $e) {
+        $error_message = $e->getMessage();
+    }
+}
+
 // Fetch data from the 'people' table
 try {
     $sql = "SELECT * FROM people";
@@ -23,19 +41,49 @@ try {
 <html>
 <head>
     <title>People List</title>
+    <link href="../../img/sgrg-logo.png" rel="icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script>
+        async function toggleStatus(id, action) {
+            const formData = new FormData();
+            formData.append('id', id);
+            formData.append('action', action);
+
+            const response = await fetch('', {
+                method: 'POST',
+                body: formData
+            });
+            if (response.ok) location.reload();
+        }
+    </script>
 </head>
 <body>
+
+    <?php
+        require '../layout/topnav.php';
+    ?>
+    
     <div class="container mt-5">
-        <h2 class="mb-4">People List</h2>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-4">All People</h2>
+            <div class="mb-3">
+                <select class="form-select" name="peopleType">
+                    <option value="">Filter People Based on their type..</option>
+                    <option value="Student">Undergraduate</option>
+                    <option value="Teacher">Postgraduate</option>
+                    <option value="Alumni">Alumni</option>
+                    <option value="Staff">Staff</option>
+                </select>
+            </div>
+        </div>
         
         <?php if (!empty($error_message)): ?>
             <div class="alert alert-danger">Error: <?= htmlspecialchars($error_message) ?></div>
         <?php endif; ?>
 
         <?php if (!empty($people)): ?>
-            <table class="table table-striped table-bordered">
-                <thead class="table-dark">
+            <table class="table table-hover">
+                <thead class="">
                     <tr>
                         <th>ID</th>
                         <th>Type</th>
@@ -44,7 +92,9 @@ try {
                         <th>Title</th>
                         <th>Degree</th>
                         <th>Contact URL</th>
+                        <th>Status</th>
                         <th>Image</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,11 +107,15 @@ try {
                             <td><?= htmlspecialchars($person['title']) ?></td>
                             <td><?= htmlspecialchars($person['degree']) ?></td>
                             <td><a href="<?= htmlspecialchars($person['contactUrl']) ?>" target="_blank">Link</a></td>
+                            <td><?= htmlspecialchars($person['publishStatus']) ?></td>
                             <td>
-                                <?php if (!empty($person['image']) && file_exists($person['image'])): ?>
-                                    <img src="<?= htmlspecialchars($person['image']) ?>" alt="Image" width="80" height="80">
+                                <a href='../actions/<?= htmlspecialchars($person['image']) ?>' target="_blank">Image</a>
+                            </td>
+                            <td>
+                                <?php if ($person['publishStatus'] === 'Published'): ?>
+                                    <button class="btn btn-outline-danger btn-sm" onclick="toggleStatus(<?= $person['id'] ?>, 'unpublish')">Unpublish</button>
                                 <?php else: ?>
-                                    <span class="text-muted">No image</span>
+                                    <button class="btn btn-outline-dark btn-sm" onclick="toggleStatus(<?= $person['id'] ?>, 'publish')">Publish</button>
                                 <?php endif; ?>
                             </td>
                         </tr>
@@ -72,8 +126,10 @@ try {
             <div class="alert alert-warning">No records found</div>
         <?php endif; ?>
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <?php
+        require '../layout/footer.php';
+    ?>
+
 </body>
 </html>
