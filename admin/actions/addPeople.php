@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $firstName = trim($_POST['firstName'] ?? '');
     $lastName = trim($_POST['lastName'] ?? '');
     $title = trim($_POST['title'] ?? '');
-    $degree = trim($_POST['degree'] ?? '');
+    $degree = trim($_POST['degree']) === '' ? 'None' : trim($_POST['degree']);
     $contactUrl = trim($_POST['contactUrl'] ?? '');
     $status = trim('None');
     
@@ -37,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($firstName)) $errors[] = "First name is required";
     if (empty($lastName)) $errors[] = "Last name is required";
     if (empty($title)) $errors[] = "Title is required";
-    if (empty($degree)) $errors[] = "Degree is required";
     if (empty($contactUrl)) $errors[] = "Contact URL is required";
 
     // Handle image upload
@@ -101,8 +100,8 @@ $conn->close();
                 <label class="form-label">People Type<span class="text-danger">*</span></label>
                 <select class="form-select" name="peopleType">
                     <option value="">Select Type</option>
-                    <option value="Student">Undergraduate</option>
-                    <option value="Teacher">Postgraduate</option>
+                    <option value="Undergraduate">Undergraduate</option>
+                    <option value="Postgraduate">Postgraduate</option>
                     <option value="Alumni">Alumni</option>
                     <option value="Staff">Staff</option>
                 </select>
@@ -127,12 +126,21 @@ $conn->close();
                 <div class="col">
                     <div class="mb-3">
                         <label class="form-label">Title<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="title">
+                        <select class="form-select" name="title">
+                        <option value="">Select Type</option>
+                        <option value="Prof">Prof</option>
+                        <option value="Dr">Dr</option>
+                        <option value="Mr">Mr</option>
+                        <option value="Mrs">Mrs</option>
+                        <option value="Miss">Miss</option>
+                        <option value="Ms">Ms</option>
+                    </select>
                     </div>
                 </div>
+
                 <div class="col">
                     <div class="mb-3">
-                        <label class="form-label">Degree<span class="text-danger">*</span></label>
+                        <label class="form-label">Degree</label>
                         <input type="text" class="form-control" name="degree">
                     </div>
                 </div>

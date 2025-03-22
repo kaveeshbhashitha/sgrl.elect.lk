@@ -2,28 +2,63 @@
 // Include the database connection
 require '../db/conn.php';
 
-// Handle publish/unpublish actions
-if (isset($_POST['action']) && isset($_POST['id'])) {
-    $id = intval($_POST['id']);
-    $newStatus = ($_POST['action'] === 'publish') ? 'Published' : 'None';
-
+// Handle delete action
+if (isset($_GET['delete'])) {
+    $id = $_GET['delete'];
     try {
-        $updateSql = "UPDATE people SET publishStatus = ? WHERE id = ?";
-        $stmt = $conn->prepare($updateSql);
-        $stmt->bind_param('si', $newStatus, $id);
+        // Fetch the image file path
+        $stmt = $conn->prepare("SELECT image FROM people WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $person = $result->fetch_assoc();
 
-        if (!$stmt->execute()) {
-            throw new Exception("Failed to update status: " . $stmt->error);
+        if ($person && file_exists('../uploads/' . $person['image'])) {
+            unlink('../uploads/' . $person['image']); // Delete the image file
         }
+
+        // Delete the record from the database
+        $stmt = $conn->prepare("DELETE FROM people WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+
+        header('Location: ' . $_SERVER['PHP_SELF']);
+        exit();
     } catch (Exception $e) {
-        $error_message = $e->getMessage();
+        $error_message = "Failed to delete: " . $e->getMessage();
     }
 }
 
-// Fetch data from the 'people' table
+// Handle publish/unpublish action
+if (isset($_GET['toggle'])) {
+    $id = $_GET['toggle'];
+    try {
+        $stmt = $conn->prepare("SELECT publishStatus FROM people WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $person = $result->fetch_assoc();
+
+        $newStatus = ($person['publishStatus'] === 'Published') ? 'None' : 'Published';
+        $stmt = $conn->prepare("UPDATE people SET publishStatus = ? WHERE id = ?");
+        $stmt->bind_param("si", $newStatus, $id);
+        $stmt->execute();
+
+        header('Location: ' . $_SERVER['PHP_SELF']);
+        exit();
+    } catch (Exception $e) {
+        $error_message = "Failed to update status: " . $e->getMessage();
+    }
+}
+
+// Fetch data from the 'people' table with filter
+$filter = isset($_GET['peopleType']) ? $_GET['peopleType'] : '';
 try {
-    $sql = "SELECT * FROM people";
-    $result = $conn->query($sql);
+    $sql = "SELECT * FROM people" . ($filter ? " WHERE peopleType = ?" : "");
+    $stmt = $conn->prepare($sql);
+    if ($filter) $stmt->bind_param("s", $filter);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     if (!$result) {
         throw new Exception("Failed to fetch data: " . $conn->error);
@@ -43,19 +78,7 @@ try {
     <title>People List</title>
     <link href="../../img/sgrg-logo.png" rel="icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <script>
-        async function toggleStatus(id, action) {
-            const formData = new FormData();
-            formData.append('id', id);
-            formData.append('action', action);
-
-            const response = await fetch('', {
-                method: 'POST',
-                body: formData
-            });
-            if (response.ok) location.reload();
-        }
-    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
@@ -67,13 +90,15 @@ try {
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="mb-4">All People</h2>
             <div class="mb-3">
-                <select class="form-select" name="peopleType">
-                    <option value="">Filter People Based on their type..</option>
-                    <option value="Student">Undergraduate</option>
-                    <option value="Teacher">Postgraduate</option>
-                    <option value="Alumni">Alumni</option>
-                    <option value="Staff">Staff</option>
-                </select>
+                <form method="get">
+                    <select class="form-select" name="peopleType" onchange="this.form.submit()">
+                        <option value="">Filter People Based on their type..</option>
+                        <option value="Undergraduate" <?= $filter == 'Undergraduate' ? 'selected' : '' ?>>Undergraduate</option>
+                        <option value="Postgraduate" <?= $filter == 'Postgraduate' ? 'selected' : '' ?>>Postgraduate</option>
+                        <option value="Alumni" <?= $filter == 'Alumni' ? 'selected' : '' ?>>Alumni</option>
+                        <option value="Staff" <?= $filter == 'Staff' ? 'selected' : '' ?>>Staff</option>
+                    </select>
+                </form>
             </div>
         </div>
         
@@ -112,11 +137,10 @@ try {
                                 <a href='../actions/<?= htmlspecialchars($person['image']) ?>' target="_blank">Image</a>
                             </td>
                             <td>
-                                <?php if ($person['publishStatus'] === 'Published'): ?>
-                                    <button class="btn btn-outline-danger btn-sm" onclick="toggleStatus(<?= $person['id'] ?>, 'unpublish')">Unpublish</button>
-                                <?php else: ?>
-                                    <button class="btn btn-outline-dark btn-sm" onclick="toggleStatus(<?= $person['id'] ?>, 'publish')">Publish</button>
-                                <?php endif; ?>
+                                <a href="?toggle=<?= $person['id'] ?>" class="btn btn-outline-dark btn-sm">
+                                    <?= ($person['publishStatus'] === 'Published') ? '<i class="fa-solid fa-folder-closed"></i>' : '<i class="fa-regular fa-folder-open"></i>' ?>
+                                </a>
+                                <a href="?delete=<?= $person['id'] ?>" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa-solid fa-trash"></i></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
