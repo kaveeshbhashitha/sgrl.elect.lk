@@ -77,7 +77,7 @@
                     </div>
                     <div class="col-md-6 text-center text-md-end">
                         <div class="footer-menu">
-                            <a href="index.html">Home</a>
+                            <a href="./admin/login.php">Admin</a>
                             <a href="javascript:alert('We are not keeping your browser data')">Cookies</a>
                             <a href="javascript:alert('Please contact us for any help')">Help</a>
                             <a href="javascript:alert('Contact us for any query')">FQAs</a>
