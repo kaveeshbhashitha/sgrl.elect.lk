@@ -1,7 +1,7 @@
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
+    $servername = "127.0.0.1";
+    $username = "root"; 
+    $password = "zinc@fine098";
     $dbname = "microgrid_lab";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
