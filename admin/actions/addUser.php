@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$hashed_password')";
             if ($conn->query($sql) === TRUE) {
                 $_SESSION['username'] = $username;
-                header('Location: ../login.php');
+                header('Location: ../display/displayUser.php');
                 exit();
             } else {
                 $errors[] = "Error: " . $conn->error;

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['email'])) {
+if (!isset($_SESSION['username'])) {
     header('Location: ../login.php');
     exit();
 }
@@ -48,7 +48,7 @@ if (!isset($_SESSION['email'])) {
                 </li>
             </ul>
         </div>
-        <abbr title="Logout"><div>Welcome, <a href="../logout.php" class="text-decoration-none text-body"><?php echo "" . $_SESSION['email'] . "!"; ?></a></div></abbr>
+        <abbr title="Logout"><div>Welcome, <a href="../logout.php" class="text-decoration-none text-body"><?php echo "" . $_SESSION['username'] . "!"; ?></a></div></abbr>
     </nav>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

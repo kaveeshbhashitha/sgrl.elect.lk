@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $user = $result->fetch_assoc();
             // Verify password
             if (password_verify($password, $user['password'])) {
-                $_SESSION['email'] = $user['email'];
+                $_SESSION['username'] = $user['username'];
                 header('Location: ./display/displayPeople.php');
             } else {
                 echo "<div class='alert alert-danger'>Invalid password.</div>";
