@@ -53,7 +53,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" name="password" id="password" placeholder="Enter password" required>
                     </div>
-                    <button type="submit" class="btn btn-danger mt-3">Login</button>
+                    <div class="d-flex">
+                        <button type="submit" class="btn btn-danger mt-3">Login</button>
+                        <a href="../index.php" class="btn btn-outline-dark mt-3 mx-2">Back to Home</a>
+                    </div>
                 </form>
                 <p class="mt-3">Don't have an account? <a href="signup.php">Contact Your Admin</a></p>
             </div>
