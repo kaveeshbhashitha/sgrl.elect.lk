@@ -1,3 +1,52 @@
+<?php
+
+require './admin/db/conn.php';
+
+try {
+    $sql = "SELECT * FROM people WHERE publishStatus = 'Published' AND peopleType = 'Alumni'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if (!$result) {
+        throw new Exception("Failed to fetch data: " . $conn->error);
+    }
+    $alumnis = $result->fetch_all(MYSQLI_ASSOC);
+} catch (Exception $e) {
+    $error_message = $e->getMessage();
+}
+
+try {
+    $sql = "SELECT image FROM news WHERE status = 'Published' ORDER BY date DESC LIMIT 3";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if (!$result) {
+        throw new Exception("Failed to fetch data: " . $conn->error);
+    }
+    $news = $result->fetch_all(MYSQLI_ASSOC);
+} catch (Exception $e) {
+    $error_message = $e->getMessage();
+}
+
+try {
+    $sql = "SELECT * FROM people WHERE publishStatus = 'Published' AND peopleType = 'Postgraduate'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if (!$result) {
+        throw new Exception("Failed to fetch data: " . $conn->error);
+    }
+    $posts = $result->fetch_all(MYSQLI_ASSOC);
+} catch (Exception $e) {
+    $error_message = $e->getMessage();
+} finally {
+    $conn->close();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -271,7 +320,6 @@
     </div>
     <!-- Process Start -->
 
-
     <!-- Postgraduates -->
     <div class="container-xxl py-5">
         <div class="container">
@@ -279,124 +327,38 @@
                 <h6 class="section-title bg-white text-center text-primary px-3">Excellence</h6>
                 <h1 class="mb-5">Postgraduate Students</h1>
             </div>
+            <?php if (!empty($error_message)): ?>
+                <div class="alert alert-danger">Error: <?= htmlspecialchars($error_message) ?></div>
+            <?php endif; ?>
+            <?php if (!empty($posts)): ?>
             <div class="row g-4">
+            <?php foreach ($posts as $person): ?>
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="team-item">
                         <div class="overflow-hidden space">
-                            <img class="img-fluid circle" src="img/img1.jpg" alt="">
+                            <img class="img-fluid circle" src="./admin/actions/<?= htmlspecialchars($person['image']) ?>" alt="">
                         </div>
                         <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-square mx-1" href="<?= htmlspecialchars($person['contactUrl']) ?>"><i class="fa-solid fa-up-right-from-square"></i></a>
                         </div>
                         <div class="text-center p-4">
-                            <h5 class="mb-0">Mr. N.T.Senarathna</h5>
-                            <small>MPhil.in Electrical Engineering</small>
+                            <h5 class="mb-0">
+                                <?= htmlspecialchars($person['title']) ?>.
+                                <?= htmlspecialchars($person['firstName']) ?>
+                                <?= htmlspecialchars($person['lastName']) ?>
+                            </h5>
+                            <small><?= htmlspecialchars($person['degree']) ?></small>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="team-item">
-                        <div class="overflow-hidden space">
-                            <img class="img-fluid circle" src="img/img2.jpg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Ms. S.P.Somathilaka</h5>
-                            <small>MSc.in Electrical Engineering</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="team-item">
-                        <div class="overflow-hidden space">
-                            <img class="img-fluid circle" src="img/img3.jpeg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Mr. M.A.Sarith Wasitha</h5>
-                            <small>MSc.in Electrical Engineering</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="team-item">
-                        <div class="overflow-hidden space">
-                            <img class="img-fluid circle" src="img/img4.jpg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Mr. W.C. Maduranga</h5>
-                            <small>MSc.in Electrical Engineering</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="team-item">
-                        <div class="overflow-hidden space">
-                            <img class="img-fluid circle" src="img/img6.jpg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Mr. N. Kurukulasooriya</h5>
-                            <small>MPhil.in Electrical Engineering</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="team-item">
-                        <div class="overflow-hidden space">
-                            <img class="img-fluid circle" src="img/img5.jpeg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Mr. N.H.Reshan H.Perera</h5>
-                            <small>MSc.in Electrical Engineering</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="team-item">
-                        <div class="overflow-hidden space">
-                            <img class="img-fluid circle" src="img/al6.jpg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Mr. W.H.Eranga</h5>
-                            <small>PhD.</small>
-                        </div>
-                    </div>
-                </div>
+            <?php endforeach; ?>
             </div>
+            <?php else: ?>
+                <div class="alert alert-warning">No records found</div>
+            <?php endif; ?>
         </div>
     </div>
     <!-- Postgraduates -->
-
 
     <!-- Alumni -->
     <div class="container-xxl py-5">
@@ -405,88 +367,36 @@
                 <h6 class="section-title bg-white text-center text-primary px-3">Excellence</h6>
                 <h1 class="mb-5">Our Alumnis</h1>
             </div>
+            
+            <?php if (!empty($error_message)): ?>
+                <div class="alert alert-danger">Error: <?= htmlspecialchars($error_message) ?></div>
+            <?php endif; ?>
+            <?php if (!empty($alumnis)): ?>
             <div class="row g-4">
+            <?php foreach ($alumnis as $person): ?>
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="team-item">
                         <div class="overflow-hidden space">
-                            <img class="img-fluid circle" src="img/al1.jpg" alt="">
+                            <img class="img-fluid circle" src="./admin/actions/<?= htmlspecialchars($person['image']) ?>" alt="">
                         </div>
                         <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-square mx-1" href="<?= htmlspecialchars($person['contactUrl']) ?>"><i class="fa-solid fa-up-right-from-square"></i></a>
                         </div>
                         <div class="text-center p-4">
-                            <h5 class="mb-0">Mr. L.W.K.Tharuka</h5>
-                            <small>MSc.in Electrical Engineering</small>
+                            <h5 class="mb-0">
+                                <?= htmlspecialchars($person['title']) ?>.
+                                <?= htmlspecialchars($person['firstName']) ?>
+                                <?= htmlspecialchars($person['lastName']) ?>
+                            </h5>
+                            <small><?= htmlspecialchars($person['degree']) ?></small>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="team-item">
-                        <div class="overflow-hidden space">
-                            <img class="img-fluid circle" src="img/al2.jpg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Mr. M.A.K.S.Boralessa</h5>
-                            <small>MSc.in Electrical Engineering</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="team-item">
-                        <div class="overflow-hidden space">
-                            <img class="img-fluid circle" src="img/al3.jpg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Mr. J.M.D.S.Jeewandara</h5>
-                            <small>MSc.in Electrical Engineering</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="team-item">
-                        <div class="overflow-hidden space">
-                            <img class="img-fluid circle" src="img/al4.jpg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Ms. M.K.Perera</h5>
-                            <small>MSc.in Electrical Engineering</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="team-item">
-                        <div class="overflow-hidden space">
-                            <img class="img-fluid circle" src="img/al5.jpg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Mr. C.Devin Aluthge</h5>
-                            <small>MSc.in Electrical Engineering</small>
-                        </div>
-                    </div>
-                </div>
+            <?php endforeach; ?>
             </div>
+            <?php else: ?>
+                <div class="alert alert-warning">No records found</div>
+            <?php endif; ?>
         </div>
     </div>
     <!-- Alumni -->
@@ -502,17 +412,42 @@
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
                     <div class="position-relative h-100">
                         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img class="d-block w-100" src="img/nw1.jpeg" alt="First slide">
+                        <?php if (!empty($error_message)): ?>
+                            <div class="alert alert-danger">Error: <?= htmlspecialchars($error_message) ?></div>
+                            <?php endif; ?>
+
+                            <?php if (!empty($news)): ?>
+                                <div id="newsCarousel" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <?php foreach ($news as $index => $person): ?>
+                                            <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
+                                                <img class="d-block w-100" src="./admin/actions/<?= htmlspecialchars($person['image']) ?>" alt="Slide <?= $index + 1 ?>">
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+
+                                    <!-- Carousel Controls -->
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+
+                                    <!-- Carousel Indicators -->
+                                    <div class="carousel-indicators">
+                                        <?php foreach ($news as $index => $person): ?>
+                                            <button type="button" data-bs-target="#newsCarousel" data-bs-slide-to="<?= $index ?>" class="<?= $index === 0 ? 'active' : '' ?>" aria-current="true" aria-label="Slide <?= $index + 1 ?>"></button>
+                                        <?php endforeach; ?>
+                                    </div>
                                 </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" src="img/nw2.jpg" alt="Second slide">
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" src="img/news3.jfif" alt="Second slide">
-                                </div>
-                            </div>
+                            <?php else: ?>
+                                <div class="alert alert-warning">No records found</div>
+                            <?php endif; ?>
+
+
                             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Previous</span>
@@ -546,5 +481,4 @@
     ?>
 
 </body>
-
 </html>
